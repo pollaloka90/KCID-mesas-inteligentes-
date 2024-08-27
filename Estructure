@@ -1,0 +1,17 @@
+/mi_proyecto
+    /static
+        /css
+            styles.css
+        /js
+            script.js
+        /images
+            logo.png
+    /templates
+        index.html
+        about.html
+        services.html
+        contact.html
+    app.py
+    requirements.txt
+    README.md
+

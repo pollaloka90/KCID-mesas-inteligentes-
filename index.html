@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="img/png" href="ruta/de/la/imagen/logopaginahujgvdcfukas.jpg">
+    <title>KCID</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #0f1f60d5;
+            color: #fff;
+            animation: fadeIn 1.5s ease-in-out;
+            overflow-x: hidden;
+        }
+        header {
+            background-color: #000000;
+            color: white;
+            padding: 1em 0;
+            text-align: center;
+            animation: slideIn 1.5s ease-out;
+        }
+        header img {
+            max-height: 60px;
+            vertical-align: middle;
+        }
+        header h1 {
+            font-size: 2.5em;
+            margin: 0;
+        }
+        nav {
+            display: flex;
+            justify-content: center;
+            background-color: #333333bb;
+            padding: 0.5em;
+            animation: slideIn 1.5s ease-out 0.5s;
+        }
+        nav a {
+            color: #f1f1f1;
+            padding: 0.75em 1.5em;
+            text-decoration: none;
+            font-weight: 700;
+            text-transform: uppercase;
+            transition: background-color 0.5s, color 0.5s, transform 0.3s;
+            border-radius: 4px;
+        }
+        nav a:hover {
+            background-color: #555555c7;
+            color: #fff;
+            transform: scale(1.1);
+        }
+        .container {
+            padding: 1.5em;
+            max-width: 900px;
+            margin: auto;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            animation: fadeIn 2s ease-in;
+            position: relative;
+        }
+        section {
+            display: none; /* Oculta las secciones por defecto */
+            padding: 2em;
+            margin-bottom: 2em;
+        }
+        section.active {
+            display: block; /* Muestra solo la sección activa */
+        }
+        h2 {
+            font-size: 2em;
+            margin-top: 0;
+            background-color: #f7f7f7;
+            color: #333;
+            border-bottom: 3px solid #007bff;
+            padding-bottom: 0.5em;
+            display: inline-block;
+        }
+        p {
+            line-height: 1.8;
+            margin: 0.5em 0;
+            color: #444;
+        }
+        footer { 
+            text-align: center;
+            padding: 1em;
+            background-color: #333333bb;
+            color: rgb(255, 255, 255);
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+            box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.3);
+        } 
+        .product-section {
+            text-align: center;
+            margin-top: 2em;
+        }
+        .product {
+            display: inline-block;
+            margin: 1em;
+            max-width: 300px;
+            border: 1px solid #fffdfd;
+            border-radius: 8px;
+            overflow: hidden;
+            transition: transform 0.3s;
+            background-color: #41648b6b;
+            color: #333;
+        }
+        .product img {
+            width: 100%;
+            height: auto;
+        }
+        .product h3 {
+            margin: 0.5em 0;
+            color: #007bff;
+        }
+        .product p {
+            padding: 0 1em 1em;
+            color: #444;
+        }
+        .product-price {
+            font-size: 1.2em;
+            color: #e63946;
+            margin: 0.5em 0;
+        }
+        .product:hover {
+            transform: scale(1.05);
+        }
+        .cart {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            background-color: #007bff;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            z-index: 1000;
+        }
+        .cart:hover {
+            background-color: #0056b3;
+        }
+        .cart-icon {
+            margin-right: 5px;
+        }
+        .cart-count {
+            background: #ff6b6b;
+            border-radius: 50%;
+            padding: 5px 10px;
+            margin-left: 5px;
+        }
+        .cart-details {
+            position: fixed;
+            top: 70px;
+            right: 10px;
+            background: #fff;
+            color: #333;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            display: none;
+            z-index: 100;
+            max-width: 300px;
+            animation: slideIn 0.3s;
+        }
+        .cart-details h3 {
+            margin-top: 0;
+        }
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .cart-item span {
+            margin-right: 10px;
+        }
+        .cart-total {
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        .contact-info {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin-bottom: 2em;
+        }
+        .contact-info div {
+            flex: 1;
+            min-width: 150px;
+            text-align: center;
+            margin: 0.5em;
+            padding: 1em;
+            background-color: #f7f7f7;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+        .contact-info div:hover {
+            transform: scale(1.05);
+        }
+        .contact-info img {
+            width: 40px;
+            height: auto;
+            margin-bottom: 0.5em;
+        }
+        .contact-info h3 {
+            margin: 0.5em 0;
+            color: #007bff;
+        }
+        .contact-form {
+            background-color: #f7f7f7;
+            padding: 1.5em;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 0.75em;
+            margin: 0.5em 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        .contact-form input[type="submit"] {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .contact-form input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+        @media (max-width: 600px) {
+            nav {
+                flex-direction: column;
+            }
+            nav a {
+                margin: 0.5em 0;
+            }
+            .contact-info {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        @keyframes slideIn {
+            from {
+                transform: translateY(-100%);
+            }
+            to {
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="img/logo.2.jpg" alt="Logo KCID">
+        <h1>Bienvenido a KCID</h1>
+    </header>
+    <nav>
+        <a href="#home" class="nav-link">Inicio</a>
+        <a href="#about" class="nav-link">Sobre Nosotros</a>
+        <a href="#services" class="nav-link">Servicios</a>
+        <a href="#products" class="nav-link">Productos</a>
+        <a href="#contact" class="nav-link">Contacto</a>
+    </nav>
+    <div class="container">
+        <section id="home" class="active">
+            <h2>Transformando Espacios</h2>
+            <p>Descubre cómo la tecnología puede mejorar tu entorno de trabajo y potenciar tu creatividad. En KCID, diseñamos mesas táctiles inteligentes que facilitan la colaboración y el intercambio de ideas.</p>
+        </section>
+        <section id="about">
+            <h2>Sobre Nosotros</h2>
+            <p>En KCID, nos dedicamos a revolucionar la forma en que interactuamos con la tecnología a través de nuestras mesas táctiles inteligentes. Combinando diseño moderno y funcionalidad avanzada, nuestras mesas son más que simples muebles: son centros interactivos que facilitan la colaboración, la creatividad y la productividad. Con un enfoque en la innovación continua, ofrecemos soluciones personalizadas para entornos empresariales, educativos y de ocio, priorizando siempre la experiencia del usuario y la integración de tecnología de vanguardia. En KCID, transformamos los espacios, convirtiéndolos en experiencias interactivas.</p>
+        </section>
+        <section id="services">
+            <h2>Se piensa ofrecer:</h2>
+            <p>Pensamos ofrecer una mesa táctil, con lápiz, teclado y que se pueda enviar información de una mesa a otra, mientras se pueden abrir más de 10 ventanas o aplicaciones, que sea práctica para todo el mundo que lo llegue a usar.</p>
+            <p>¿Por qué nos preferirían? Nos preferirían por muchas razones, las cuales tienen que ver con comodidad, accesibilidad y eficacia. Ya que este producto va destinado a toda persona que necesite un espacio cómodo y tecnológico. 
+            ¿Por qué deberían elegir nuestros productos?  
+            Como mencionamos anteriormente arquitectos, profesores, estudiantes, ingenieros y cualquier persona que necesite un espacio cómodo y más manipulable les ayudaría a tener un mayor rendimiento al momento de trabajar o realizar actividades. También sería muy positivo en el caso de los arquitectos ver de mejor manera sus planos al momento de trabajar.</p>
+        </section>
+        <section id="products">
+            <h2>Productos</h2>
+            <div class="product-section">
+                <div class="product">
+                    <img src="img/imagen34.jpg" alt="Mesa Táctil">
+                    <h3>Mesa Táctil Inteligente</h3>
+                    <p class="product-price">$850.000</p>
+                    <button class="add-to-cart">Añadir al Carrito</button>
+                </div>
+                <!-- Puedes agregar más productos aquí -->
+            </div>
+        </section>
+        <section id="contact">
+            <h2>Contacto</h2>
+            <div class="contact-info">
+                <div>
+                    <img src="img/imagenkcid2.png" alt="Teléfono">
+                    <h3>Llámanos</h3>
+                    <p>+56 9 6742 8942</p>
+                    <p>22 2648 1309</p>
+                </div>
+                <div>
+                    <img src="img/Imagen kcid.png" alt="Correo Electrónico">
+                    <h3>Envíanos un correo</h3>
+                    <p>kcimesasinteligentes@gmail.com</p>
+                </div>
+                <div>
+                    <img src="img/imagen kcid 3.avif" alt="Ubicación">
+                    <h3>Visítanos</h3>
+                    <p>Santiago, Sandra 1280</p>
+                </div>
+            </div>
+            <div class="contact-form">
+                <h3>Déjanos un mensaje</h3>
+                <form action="#" method="post">
+                    <input type="text" name="name" placeholder="Tu nombre" required>
+                    <input type="email" name="email" placeholder="Tu correo electrónico" required>
+                    <textarea name="message" rows="5" placeholder="Tu mensaje" required></textarea>
+                    <input type="submit" value="Enviar">
+                </form>
+            </div>
+        </section>
+    </div>
+    <footer>
+        <p>© 2024 KCID. Todos los derechos reservados.</p>
+    </footer>
+
+    <div class="cart" id="cart">
+        <i class="fas fa-shopping-cart cart-icon"></i>
+        Carrito
+        <span class="cart-count" id="cart-count">0</span>
+    </div>
+
+    <div class="cart-details" id="cart-details">
+        <h3>Carrito de Compras</h3>
+        <div id="cart-items">No hay productos en el carrito.</div>
+        <div class="cart-total" id="cart-total">Total: $0</div>
+        <button id="clear-cart">Vaciar Carrito</button>
+    </div>
+
+    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function(){
+            emailjs.init("TU_USER_ID"); // Reemplaza con tu User ID de EmailJS
+        })();
+
+        document.querySelector('.contact-form form').addEventListener('submit', function(event) {
+            event.preventDefault(); // Evita el envío del formulario predeterminado
+            
+            // Recoge los datos del formulario
+            const name = this.name.value;
+            const email = this.email.value;
+            const message = this.message.value;
+            
+            // Envía el correo utilizando EmailJS
+            emailjs.send("TU_SERVICE_ID", "TU_TEMPLATE_ID", {
+                from_name: name,
+                from_email: email,
+                message: message,
+            })
+            .then(function(response) {
+                alert('Mensaje enviado con éxito!');
+                // Limpia el formulario después de enviar
+                document.querySelector('.contact-form form').reset();
+            }, function(error) {
+                alert('Hubo un problema al enviar el mensaje. Por favor intenta nuevamente.');
+            });
+        });
+
+        // Código para manejar la navegación entre secciones
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Ocultar todas las secciones
+                document.querySelectorAll('section').forEach(section => {
+                    section.classList.remove('active');
+                });
+
+                // Mostrar la sección actual
+                const target = document.querySelector(this.getAttribute('href'));
+                target.classList.add('active');
+            });
+        });
+
+        // Manejo del carrito de compras
+        let cartCount = 0;
+        let cartTotal = 0;
+        const cartItems = [];
+
+        document.querySelector('.add-to-cart').addEventListener('click', function() {
+            cartCount++;
+            document.getElementById('cart-count').textContent = cartCount;
+
+            // Añadir el producto al carrito
+            const productName = "Mesa Táctil Inteligente";
+            const productPrice = 850000; // Precio en pesos
+            cartItems.push({ name: productName, price: productPrice });
+            cartTotal += productPrice;
+            updateCartDetails();
+
+            alert('Producto añadido al carrito!');
+        });
+
+        // Mostrar detalles del carrito
+        document.getElementById('cart').addEventListener('click', function() {
+            const cartDetails = document.getElementById('cart-details');
+            cartDetails.style.display = cartDetails.style.display === 'block' ? 'none' : 'block';
+        });
+
+        // Actualizar detalles del carrito
+        function updateCartDetails() {
+            const cartItemsElement = document.getElementById('cart-items');
+            if (cartCount === 0) {
+                cartItemsElement.innerHTML = 'No hay productos en el carrito.';
+                document.getElementById('cart-total').textContent = 'Total: $0';
+            } else {
+                cartItemsElement.innerHTML = cartItems.map(item => `<div class="cart-item"><span>${item.name}</span><span>$${item.price.toLocaleString()}</span></div>`).join('');
+                document.getElementById('cart-total').textContent = `Total: $${cartTotal.toLocaleString()}`;
+            }
+        }
+
+        // Vaciar el carrito
+        document.getElementById('clear-cart').addEventListener('click', function() {
+            cartCount = 0;
+            cartTotal = 0;
+            cartItems.length = 0;
+            document.getElementById('cart-count').textContent = cartCount;
+            updateCartDetails();
+            alert('El carrito ha sido vaciado.');
+        });
+    </script>
+</body>
+</html>
+
+
